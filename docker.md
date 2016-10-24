@@ -90,11 +90,15 @@ https://docs.docker.com/engine/reference/builder/  Dockerfile builder
 
 #pythonic
 
-|list comprehention|
-|---|
-|```{python}:new_things = ["something with " + ITEM for ITEM in old_things if condition_based_on(ITEM)]
+##list comprehention
 
-```{python}:new_things = []
- for ITEM in old_things:
+```python
+ new_list = ["something with " + ITEM for ITEM in iterable if condition_based_on(ITEM)]
+```
+
+```python
+new_list = []
+ for ITEM in iterable:
     if condition_based_on(ITEM):
-        new_things.append("something with " + ITEM)
+        new_list.append("something with " + ITEM)
+```
