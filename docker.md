@@ -31,5 +31,12 @@
 |`docker build -t` sd2017ubuntu:1604.01 -m "user"` | Creating new image from docker file in same directory|
 |`docker commit -m` "msg"  3bfe6772524e sd2017/ubuntu:04 | Creating image from container|  
 |`docker exec `--user root -it clionx /bin/sh |Exec additional command in a running docker |
+|`docker history` image  |image rollback  https://gist.github.com/dasgoll/476ecc7a057ac885f0be |
+|`docker pull` maven:3.3.9-jdk-7| docker pull image:tag from repository docker hub|
+|`docker run -itd` --name=maven  maven:3.3.9-jdk-7  /bin/bash | starting pseudo terminal named container, with image and bash command |
+|`docker run -itd --link` server3 --name=client3 client_img /bin/bash |run with ****link****|
+| `docker ps` / `docker ps -a`| docker list running/stopped containers |
+| `docker run -d -name1 wev1 -p` 8081:80|  ****exposing host:guest port****|
+|`docker-compose up` | building and running composed docker containers with services|
 https://docs.docker.com/engine/tutorials/dockerimages/  building images
 https://docs.docker.com/engine/reference/builder/  Dockerfile builder
