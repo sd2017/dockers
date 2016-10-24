@@ -86,3 +86,15 @@ https://docs.docker.com/engine/reference/builder/  Dockerfile builder
 |find . -name '*.zip' -exec unzip {} \;|`TBD`|
 |useradd user||
 |userdel user||
+
+
+#pythonic
+
+|list comprehention|
+|---|
+|```{python}:new_things = ["something with " + ITEM for ITEM in old_things if condition_based_on(ITEM)]
+
+```{python}:new_things = []
+ for ITEM in old_things:
+    if condition_based_on(ITEM):
+        new_things.append("something with " + ITEM)
