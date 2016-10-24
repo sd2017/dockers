@@ -154,7 +154,7 @@ def spam(self):
 		...
     self.bar()
 		...
-
+```
 
 • Semaphore   - counting lock , acquire - waits if counter is 0 - otherwise decrement  , release increment count
 	use --- limithing number of threads doing operation , signaling
@@ -242,6 +242,7 @@ p.stdout.read(size) # Read data from subprocess
 
 python!!!! on CPU bound use multiprocessing.Process instead of Threading.Thread    windows launch is in __main__ !!!
 Process do not share same data , do not need locks  , do join , daemon , terminate!
+```python
 import time
 import multiprocessing
 class CountdownProcess(multiprocessing.Process):
@@ -258,9 +259,13 @@ class CountdownProcess(multiprocessing.Process):
 	c.send_bytes(buffer) # Send a buffer of bytes
 	c.recv_bytes([max]) # Receive a buffer of bytes
 	c.poll([timeout]) #Check for data
+```
 
-
+```python
 stringnum=str(num)
+```
+
+```python
 Animal = Enum('Animal', [(a, a) for a in ('horse', 'dog')], type=str)
 
 which gives us:
@@ -270,23 +275,28 @@ which gives us:
 
 >>> Animal.dog == 'dog'
 True
-
+```
 print "If I add %d, %d, and %d I get %d." % (18 my_age, my_height, my_weight, my_age + my_height + my_weight)    
 string%s     raw%r decimal%d
 
 print "new '{0}' is longer than '{1}'".format(name1, name2)
 
+```python
 list_elements = []
-list=range(1,6)   ?????   1,2,3,4,5
+list=range(1,6)  
 list.append(v)
+```
+ ****TBD***   1,2,3,4,5
 
+```python
     for item in  itertools.permutations(string):
         print "item:{0}".format(item)
     lista=list(itertools.permutations(string))
     print "lista",lista
     for index,item in enumerate(lista):
         print "enumerate{0}:{1}:".format(index,item)
-
+```
+```python
 class Permuter():
     def __iter__(self):
        return self
@@ -366,7 +376,7 @@ with open("foo.txt", "w") as src1:
         print "*** tb_lineno:", exc_traceback.tb_lineno
      finally:
        gaga()
-
+```
 
 python -o
 if __debug__
