@@ -24,10 +24,10 @@
 			- [threads simultaneously (if any)](#threads-simultaneously-if-any)
 		- [Event Common use : barriers, notification](#event-common-use-barriers-notification)
 		- [Using an event to signal "completion"](#using-an-event-to-signal-completion)
-- [Done](#done)
+			- [Done](#done)
 	- [Condition](#condition)
-- [Do something with x](#do-something-with-x)
-- [unknown exception info](#unknown-exception-info)
+					- [## Do something with x](#-do-something-with-x)
+		- [unknown exception info](#unknown-exception-info)
 - [python sqlite3](#python-sqlite3)
 - [Atom](#atom)
 		- [ubuntu atom install](#ubuntu-atom-install)
@@ -316,7 +316,7 @@ processing
 processing
 ...
 ...
-# Done
+####Done
 evt.set()
 ```
 ## Condition
@@ -332,7 +332,7 @@ with items_cv:            Before waiting, you have to acquire the lock
 	while not items:       
 		items_cv.wait()   ---- wait() releases the lock  when waiting and   reacquires when woken    TBD TODO
 	x = items.pop(0)
-# Do something with x
+######## Do something with x
 ```
 import subprocess
 p = subprocess.Popen(['python','child.py'],
@@ -607,11 +607,12 @@ http://stackoverflow.com/questions/14058453/making-python-loggers-output-all-mes
 logging.basicConfig(filename='ADSMART_test_wrap_time.log',level=logging.INFO)     #output logging to file
 logging.basicConfig(format='%(funcName)s %(lineno)d %(message)s',filename=return_data["log_filename"],level=logging.INFO)
 
-#unknown exception info
+###unknown exception info
+```python
 except:
-
             exc_type, exc_obj, exc_tb = sys.exc_info()
             logging.fatal("Error: exc_type[%s] exc_obj[%s]",exc_type,exc_obj)
+```
 
  buf = "A = %d\n , B = %s\n" % (a, b)                                             #sprintf like
 
