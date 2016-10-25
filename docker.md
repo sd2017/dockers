@@ -64,6 +64,7 @@ https://docs.docker.com/engine/reference/builder/  Dockerfile builder
 |git commit -am "initial from http://www.qtrac.eu/pipbook-1.0.tar.gz"|`TBD -a`|
 |git tag  0.1  -m "initial from http://www.qtrac.eu/pipbook-1.0.tar.gz"|tag number and messege|   
 |git push|moving upstream from local to remote repository|
+|git pull --rebase `TBD`||
 |---|---|
 
 
@@ -102,6 +103,23 @@ new_list = []
     if condition_based_on(ITEM):
         new_list.append("something with " + ITEM)
 ```
+
+###list comprehention example:finding words in list that contains only specific letters.
+```python
+wordlist = ['mississippi','miss','lake','que']
+letters = set('aqk')
+list=[]
+list=[word in wordlist if letters & set(word) ]
+```
+###withouth list comprehention example:finding words in list that contains only specific letters.
+```python
+wordlist = ['mississippi','miss','lake','que']
+letters = set('aqk')
+for word in wordlist:
+    if letters & set(word):
+        print word
+```
+
 ##python details
 
 all python methods are virtual
@@ -544,3 +562,24 @@ class A(object)  class B(A) __init__() super(B,self).__init__()		http://stackove
 sqlite3 . connect
 if is_new:sqlite3.executscript(schema)    
 ```
+
+##atom
+
+###ubuntu atom install
+   33  sudo add-apt-repository ppa:webupd8team/atom
+   34  sudo apt-get update
+   35  sudo apt-get install -y atom
+   36  sudo apt install npm
+   37  apm install terminal-fusion --no-confirm
+
+|key bindings||
+|---|---|
+|navigate tab|ctrl-tab , ctrl shift-tab|
+|settings|ctrl-,|
+
+
+|package||
+|---|---|
+|autocomplete-plus||
+|markdown-preview|ctrl-shift-m|
+|git-plus|ctrl-shift-h `pull before push`|
