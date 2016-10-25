@@ -12,17 +12,23 @@
 	- [python details](#python-details)
 	- [python multiprocessing](#python-multiprocessing)
 		- [Lock    MUTEX   acquire-- only one can acquire , release](#lock-mutex-acquire-only-one-can-acquire-release)
-- [with Critical section](#with-critical-section)
-- [new block code...](#new-block-code)
+	- [with Critical section](#with-critical-section)
+		- [new block code...](#new-block-code)
 	- [RLock   - rentrent lock  , can be reacuire by same thread , methods calling methods trying to acqire lock in same thread](#rlock-rentrent-lock-can-be-reacuire-by-same-thread-methods-calling-methods-trying-to-acqire-lock-in-same-thread)
-- [This can be used to have one or more](#this-can-be-used-to-have-one-or-more)
-- [threads wait for something to occur](#threads-wait-for-something-to-occur)
-- [Setting an event will unblock all waiting](#setting-an-event-will-unblock-all-waiting)
-- [threads simultaneously (if any)](#threads-simultaneously-if-any)
+	- [Semaphore   - counting lock , acquire - waits if counter is 0 - otherwise decrement  , release increment count](#semaphore-counting-lock-acquire-waits-if-counter-is-0-otherwise-decrement-release-increment-count)
+	- [BoundedSemaphore **TBD**](#boundedsemaphore-tbd)
+	- [Event   set() , wait()](#event-set-wait)
+			- [This can be used to have one or more](#this-can-be-used-to-have-one-or-more)
+			- [threads wait for something to occur](#threads-wait-for-something-to-occur)
+			- [Setting an event will unblock all waiting](#setting-an-event-will-unblock-all-waiting)
+			- [threads simultaneously (if any)](#threads-simultaneously-if-any)
+		- [Event Common use : barriers, notification](#event-common-use-barriers-notification)
+		- [Using an event to signal "completion"](#using-an-event-to-signal-completion)
 - [Done](#done)
+	- [Condition](#condition)
 - [Do something with x](#do-something-with-x)
 - [unknown exception info](#unknown-exception-info)
-	- [python sqlite3](#python-sqlite3)
+- [python sqlite3](#python-sqlite3)
 - [Atom](#atom)
 		- [ubuntu atom install](#ubuntu-atom-install)
 - [networking layer2](#networking-layer2)
@@ -208,12 +214,12 @@ multiple pythons  process do have multipython interperter
 ##python multiprocessing
 ###Lock    MUTEX   acquire-- only one can acquire , release  
 
-# with Critical section
+## with Critical section
 ```python
 with x_lock:
   statements using x
 ...
-#new block code...
+###new block code...
 with automatically acquires the lock,
 releases it when control enters/exits the
 associated block of statements
@@ -252,24 +258,24 @@ def spam(self):
 		...
 ```
 
-• Semaphore   - counting lock , acquire - waits if counter is 0 - otherwise decrement  , release increment count
+## Semaphore   - counting lock , acquire - waits if counter is 0 - otherwise decrement  , release increment count
 	use --- limithing number of threads doing operation , signaling
-• BoundedSemaphore **TBD**
+## BoundedSemaphore **TBD**
 
-• Event   set() , wait()
+## Event   set() , wait()
 ```python
 e = threading.Event()
 e.isSet() # Return True if event set
 e.set() # Set event
 e.clear() # Clear event
 e.wait() # Wait for event
-# This can be used to have one or more
-#threads wait for something to occur
-# Setting an event will unblock all waiting
-#threads simultaneously (if any)
+#### This can be used to have one or more
+####threads wait for something to occur
+#### Setting an event will unblock all waiting
+####threads simultaneously (if any)
 ```
 
-• Common use : barriers, notification
+### Event Common use : barriers, notification
 Using an event to ensure proper initialization
 ```python
 init = threading.Event()
@@ -287,7 +293,7 @@ Thread(target=worker).start()
 Thread(target=worker).start()
 initialize()
 
-• Using an event to signal "completion"
+### Using an event to signal "completion"
 	def master():
 	...
 	item = create_item()
@@ -312,7 +318,7 @@ processing
 # Done
 evt.set()
 ```
-• Condition
+## Condition
 ```python
 cv = threading.Condition([lock])
 cv.acquire() # Acquire the underlying lock
@@ -634,7 +640,7 @@ print os.path.dirname(inspect.getfile(inspect.currentframe())) # script director
 
 class A(object)  class B(A) __init__() super(B,self).__init__()		http://stackoverflow.com/questions/9698614/super-raises-typeerror-must-be-type-not-classobj-for-new-style-class    solve: TypeError: must be type, not classobj
 
-##python sqlite3
+#python sqlite3
 
 https://github.com/sqlitebrowser/sqlitebrowser/releases
 ```python
@@ -681,7 +687,9 @@ http://flight-manual.atom.io/using-atom/sections/find-and-replace/
 |language-todo`todo`||
 |find-and-replace`todo`||
 |project-manager||
-
+|open-recent|File->open|
+|Todo-Show||
+|minimap|code navigtion|
 
 
 #networking layer2
