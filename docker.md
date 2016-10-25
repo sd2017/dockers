@@ -1,4 +1,34 @@
-#docker
+<!-- TOC depthFrom:1 depthTo:6 withLinks:1 updateOnSave:1 orderedList:0 -->
+
+- [Docker](#docker)
+	- [docker install](#docker-install)
+- [GIT](#git)
+- [linux commandline](#linux-commandline)
+	- [gdb](#gdb)
+- [pythonic](#pythonic)
+	- [list comperhention](#list-comperhention)
+		- [list comprehention example:finding words in list that contains only specific letters.](#list-comprehention-examplefinding-words-in-list-that-contains-only-specific-letters)
+		- [withouth list comprehention example:finding words in list that contains only specific letters.](#withouth-list-comprehention-examplefinding-words-in-list-that-contains-only-specific-letters)
+	- [python details](#python-details)
+	- [python multiprocessing](#python-multiprocessing)
+		- [Lock    MUTEX   acquire-- only one can acquire , release](#lock-mutex-acquire-only-one-can-acquire-release)
+- [with Critical section](#with-critical-section)
+- [new block code...](#new-block-code)
+	- [RLock   - rentrent lock  , can be reacuire by same thread , methods calling methods trying to acqire lock in same thread](#rlock-rentrent-lock-can-be-reacuire-by-same-thread-methods-calling-methods-trying-to-acqire-lock-in-same-thread)
+- [This can be used to have one or more](#this-can-be-used-to-have-one-or-more)
+- [threads wait for something to occur](#threads-wait-for-something-to-occur)
+- [Setting an event will unblock all waiting](#setting-an-event-will-unblock-all-waiting)
+- [threads simultaneously (if any)](#threads-simultaneously-if-any)
+- [Done](#done)
+- [Do something with x](#do-something-with-x)
+- [unknown exception info](#unknown-exception-info)
+	- [python sqlite3](#python-sqlite3)
+- [Atom](#atom)
+		- [ubuntu atom install](#ubuntu-atom-install)
+- [networking layer2](#networking-layer2)
+
+<!-- /TOC -->
+#Docker
 ##docker install
 
 >sudo apt-get update
@@ -83,9 +113,13 @@ https://docs.docker.com/engine/reference/builder/  Dockerfile builder
 |lsof  -sTCP:ESTABLISHED -i:2006 ||
 |ip route add 10.1.55.0/24 via 10.1.71.1`TBD`||
 
+egrep "\-SRM|0x00000001" two_not_recording_1646_tv_2000_logmerged.cap > two_not_start_SRM_0x1.txt
+egrep '(KEY_PRESS|Session_Play|PLAYER_EVENT_SESSION|Record.review.buffer|playerSessionEventListener)' fail.play.sucseed.txt     > fail.play.session.txt
+egrep -a $'hudson.lab.' /etc/hosts
 
 |linux|commands|
 |---|---|
+
 |echo '123:456'!  cut -d: -f1 |     -string coloumns|
 | http://unix.stackexchange.com/questions/81349/how-do-i-use-find-when-the-filename-contains-spaces ||
 | http://www.linuxjournal.com/article/7385   | brackets braces substitution|
@@ -119,8 +153,19 @@ wget  -nH --cut-dirs=1  -np  http://higheredbcs.wiley.com/legacy/college/goodric
 |userdel user||
 |top -b -n 1||
 |top -b -c    -n 1 ||
-find . -name "*.zip" -print0 | xargs -0 -n1 unzip|`TBD`
+
+find . -name *.zip -print0 | xargs -0 -n1 unzip
 lsof -ln -sTCP:ESTABLISHED -i:50039|head -2|tail -1
+
+##gdb
+(gdb) set solib-absolute-prefix /junk
+(gdb) set solib-search-path path/to/uClibc-nptl-0.9.29-20070423
+set solib-search-path /disks/clibc_nptl/lib
+info locals
+info reg
+set solib-search-path /disks/uilstore6/disk601/sdagany/gdb_dov/uClibc-nptl-0.9.29-20070423
+
+
 
 #pythonic
 
@@ -591,12 +636,13 @@ class A(object)  class B(A) __init__() super(B,self).__init__()		http://stackove
 
 ##python sqlite3
 
+https://github.com/sqlitebrowser/sqlitebrowser/releases
 ```python
 sqlite3 . connect
 if is_new:sqlite3.executscript(schema)    
 ```
 
-##atom
+#Atom
 http://flight-manual.atom.io/using-atom/sections/find-and-replace/
 ###ubuntu atom install
    33  sudo add-apt-repository ppa:webupd8team/atom
@@ -625,6 +671,8 @@ http://flight-manual.atom.io/using-atom/sections/find-and-replace/
 |---|---|
 |autocomplete-plus||
 |markdown-preview|ctrl-shift-m|
+|markdown-toc||
+|markdown-writer|need to set key-bindings|
 |split-diff|ctrl-alt-n|
 |git-diff| alt-g d list diffs , alt-g arrow|
 |git-plus|ctrl-shift-h `pull before push`  https://github.com/akonwi/git-plus/issues/294 need git add before every git commit |
