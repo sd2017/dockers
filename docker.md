@@ -17,11 +17,11 @@
 	- [RLock   - rentrent lock  , can be reacuire by same thread , methods calling methods trying to acqire lock in same thread](#rlock-rentrent-lock-can-be-reacuire-by-same-thread-methods-calling-methods-trying-to-acqire-lock-in-same-thread)
 	- [Semaphore   - counting lock , acquire - waits if counter is 0 - otherwise decrement  , release increment count](#semaphore-counting-lock-acquire-waits-if-counter-is-0-otherwise-decrement-release-increment-count)
 	- [BoundedSemaphore **TBD**](#boundedsemaphore-tbd)
-	- [Event   set() , wait()](#event-set-wait)
-			- [This can be used to have one or more](#this-can-be-used-to-have-one-or-more)
-			- [threads wait for something to occur](#threads-wait-for-something-to-occur)
-			- [Setting an event will unblock all waiting](#setting-an-event-will-unblock-all-waiting)
-			- [threads simultaneously (if any)](#threads-simultaneously-if-any)
+		- [Event   set() , wait()](#event-set-wait)
+					- [## This can be used to have one or more](#-this-can-be-used-to-have-one-or-more)
+					- [##threads wait for something to occur](#threads-wait-for-something-to-occur)
+					- [## Setting an event will unblock all waiting](#-setting-an-event-will-unblock-all-waiting)
+					- [##threads simultaneously (if any)](#threads-simultaneously-if-any)
 		- [Event Common use : barriers, notification](#event-common-use-barriers-notification)
 		- [Using an event to signal "completion"](#using-an-event-to-signal-completion)
 			- [Done](#done)
@@ -32,6 +32,13 @@
 - [Atom](#atom)
 		- [ubuntu atom install](#ubuntu-atom-install)
 - [networking layer2](#networking-layer2)
+- [markdown](#markdown)
+- [H1](#h1)
+	- [H2](#h2)
+		- [H3](#h3)
+			- [H4](#h4)
+				- [H5](#h5)
+					- [H6](#h6)
 
 <!-- /TOC -->
 #Docker
@@ -263,17 +270,17 @@ def spam(self):
 	use --- limithing number of threads doing operation , signaling
 ## BoundedSemaphore **TBD**
 
-## Event   set() , wait()
+### Event   set() , wait()
 ```python
 e = threading.Event()
 e.isSet() # Return True if event set
 e.set() # Set event
 e.clear() # Clear event
 e.wait() # Wait for event
-#### This can be used to have one or more
-####threads wait for something to occur
-#### Setting an event will unblock all waiting
-####threads simultaneously (if any)
+######## This can be used to have one or more
+########threads wait for something to occur
+######## Setting an event will unblock all waiting
+########threads simultaneously (if any)
 ```
 
 ### Event Common use : barriers, notification
@@ -975,3 +982,58 @@ sends this frame to the switch, which delivers the frame to the gateway router.
 
 
 networking http://webapps.cse.unsw.edu.au/webcms2/course/index.php?cid=2373
+
+#markdown
+https://github.com/voldyman/MarkMyWords
+https://www.maketecheasier.com/markdown-editors-linux/
+https://guides.github.com/features/mastering-markdown/
+https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet  
+https://github.com/retext-project/retext
+# H1
+## H2
+### H3
+#### H4
+##### H5
+###### H6
+
+Alternatively, for H1 and H2, an underline-ish style:
+
+Alt-H1
+======
+
+Alt-H2
+------
+Emphasis, aka italics, with *asterisks* or _underscores_.
+
+Strong emphasis, aka bold, with **asterisks** or __underscores__.
+
+Combined emphasis with **asterisks and _underscores_**.
+
+Strikethrough uses two tildes. ~~Scratch this.~~
+
+1. First ordered list item
+2. Another item
+⋅⋅* Unordered sub-list.
+1. Actual numbers don't matter, just that it's a number
+⋅⋅1. Ordered sub-list
+4. And another item.
+
+⋅⋅⋅You can have properly indented paragraphs within list items. Notice the blank line above, and the leading spaces (at least one, but we'll use three here to also align the raw Markdown).
+
+⋅⋅⋅To have a line break without a paragraph, you will need to use two trailing spaces.⋅⋅
+⋅⋅⋅Note that this line is separate, but within the same paragraph.⋅⋅
+⋅⋅⋅(This is contrary to the typical GFM line break behaviour, where trailing spaces are not required.)
+
+* Unordered list can use asterisks
+- Or minuses
++ Or pluses
+
+tables
+Markdown | Less | Pretty
+--- | --- | ---
+*Still* | `renders` | **nicely**
+1 | 2 | 3
+
+quote >
+
+http://stackoverflow.com/questions/28508141/code-block-inside-table-row-in-markdown
