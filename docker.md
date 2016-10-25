@@ -71,23 +71,56 @@ https://docs.docker.com/engine/reference/builder/  Dockerfile builder
 
 #linux commandline
 
+|linux|networking commands|
+|---|---|
+|netstat -tunlp|n network,l listening ports,p process,t tcp,u udp|
+|netstat -a  - all ports both listening  and non listening |
+|netstat -l - listening sockets ||
+|netstat -a 		||
+|netstat -lnap   ||  
+|netstat -lnapt  |  - only tcp|
+|lsof -i tcp:1555 | https://danielmiessler.com/study/lsof/ |
+|lsof  -sTCP:ESTABLISHED -i:2006 ||
+|ip route add 10.1.55.0/24 via 10.1.71.1`TBD`||
+
+
 |linux|commands|
 |---|---|
 |echo '123:456'!  cut -d: -f1 |     -string coloumns|
 | http://unix.stackexchange.com/questions/81349/how-do-i-use-find-when-the-filename-contains-spaces ||
 | http://www.linuxjournal.com/article/7385   | brackets braces substitution|
+|||
+
+|wget||
+|---|---|
 |wget  -nH --cut-dirs=1  -np http://higheredbcs.wiley.com/legacy/college/goodrich/1118290275/dsap/ch0{1,2,3,4,5,6,7,8,9}.zip  |wget removing top site dirs,    get 9 files , 9 inputs to command|
- |exec "$0" "$@"' |  run the script instead of command|
+|wget  -r   --no-parent -np   --no-host-directories -nH   http://www.tutorialspoint.com/unix_commands/wget.htm
+
+  175  wget -nc  -nH --cut-dirs=1 http://www.netobjectives.com/resources/books/design-patterns-explained/review-questions
+  181  wget -r http://www.netobjectives.com/resources/books/design-patterns-explained/java-code-examples/
+  185  wget -r -np  http://www.netobjectives.com/resources/books/design-patterns-explained/
+  192  wget -r -nh  -np  http://www.netobjectives.com/resources/books/design-patterns-explained/
+  193  wget -r -nH  -np  http://www.netobjectives.com/resources/books/design-patterns-explained/
+       wget -r -nH --cut-dirs=2 -np   --convert-links  http://www.netobjectives.com/resources/books/design-patterns-explained/
+download site   wget -r --no-parent site.com
+http://www.linuxjournal.com/article/7385   , brackets braces substitution
+wget  -nH --cut-dirs=1  -np  http://higheredbcs.wiley.com/legacy/college/goodrich/1118290275/dsap/ch0{1,2,3,4,5,6,7,8,9}.zip    get 9 files , 9 inputs to command
+
+|---|---|
+|exec "$0" "$@"' |  run the script instead of command|
   |  http://superuser.com/questions/878967/what-do-these-parameters-do  |
   |http://askubuntu.com/questions/368509/why-is-0-set-to-bash                                         |
   |   unzip 	  ch0{1,2,3,4,5,6,7,8,9}.zip   | not working because they stuff all the files onto the same command line. While that works with most programs, unzip will take the first argument as the zip file, and any after the first as files to extract from it. You need to execute the command once for each file:|
 |nproc|number of processprs|
 |lscpu|info on cpu|
-  |find . -name "*.zip" -print0 ! xargs -0 -n1 unzip|`TBD`|
 |find . -name '*.zip' -exec unzip {} \;|`TBD`|
+|find . -name 'cpf.log'  -exec grep 'onverting from' {} \;||
 |useradd user||
 |userdel user||
-
+|top -b -n 1||
+|top -b -c    -n 1 ||
+find . -name "*.zip" -print0 | xargs -0 -n1 unzip|`TBD`
+lsof -ln -sTCP:ESTABLISHED -i:50039|head -2|tail -1
 
 #pythonic
 
@@ -588,13 +621,18 @@ http://flight-manual.atom.io/using-atom/sections/find-and-replace/
 |line move|ctrl-up,ctrl-down|
 
 
-|package||
+|package| https://atom.io/packages/list?direction=desc&sort=stars |
 |---|---|
 |autocomplete-plus||
 |markdown-preview|ctrl-shift-m|
-|git-plus|ctrl-shift-h `pull before push`|
+|split-diff|ctrl-alt-n|
+|git-diff| alt-g d list diffs , alt-g arrow|
+|git-plus|ctrl-shift-h `pull before push`  https://github.com/akonwi/git-plus/issues/294 need git add before every git commit |
+|git-log||
+|git-time-machine||
 |language-todo`todo`||
 |find-and-replace`todo`||
+|project-manager||
 
 
 
