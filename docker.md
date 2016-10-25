@@ -593,4 +593,289 @@ http://flight-manual.atom.io/using-atom/sections/find-and-replace/
 |autocomplete-plus||
 |markdown-preview|ctrl-shift-m|
 |git-plus|ctrl-shift-h `pull before push`|
-|language-todo||
+|language-todo`todo`||
+|find-and-replace`todo`||
+
+
+
+#networking layer2
+==================
+http://smallbiztrends.com/2013/09/osi-model-layer-networking.html
+
+Layer 2 is the data link where data packets are encoded and decoded into bits. The MAC (Media Access Control) sub layer controls how a computer on the network gains access to the data and permission to transmit it and the LLC (Logical Link control) layer controls frame synchronization, flow control and error checking.
+Layer 3 provides switching and routing technologies, creating logical paths, known as virtual circuits, for transmitting data from node to node. Routing and forwarding are functions of this layer, as well as addressing, internetworking, error handling, congestion control and packet sequencing.
+To summarize:
+Layer 2 Data Link: Responsible for physical addressing, error correction, and preparing the information for the media
+Layer 3 Network: Responsible for logical addressing and routing IP, ICMP, ARP, RIP, IGRP, and routers
+Pros and Cons of Layer 2 Vs Layer 3
+Some advantages of Layer 2 include lower costs, only requires switching, no routing gear is necessary and offers very low latency. Layer 2 also has some significant disadvantages such as the lack of router hardware, leaving them susceptible to broadcast storm
+
+Layer 2 networks also forward all traffic, especially ARP and DHCP broadcasts. Anything transmitted by one device is forwarded to all devices. When the network gets too large, the broadcast traffic begins to create congestion and decreases network efficiency.
+
+Layer 3 devices, on the other hand, restrict broadcast traffic such as ARP and DHCP broadcasts to the local network. This reduces overall traffic levels by allowing administrators to divide networks into smaller parts and restrict broadcasts to only that sub-network.
+This means there is a limit to the size of a layer 2 network. However, a properly configured layer 3 network with the correct knowledge and hardware can have infinite growth.
+A Layer 3 switch is a high-performance device for network routing. A router works with IP addresses at layer 3 of the model. Layer 3 networks are built to run on on layer 2 networks.
+In an IP layer 3 network, the IP portion of the datagram has to be read. This requires stripping off the datalink layer frame information. Once the protocol frame information is stripped, the IP datagram has to be reassembled. Once the IP datagram is reassembled, the hop count has to be decremented, the header checksum has to be recalculated, a lookup for routing must be made, and only then can the IP datagram be chopped back up and inserted into frames and transmitted to the next hop. All of this takes extra time.
+
+
+Enter Newer Technologies Such as Metro Ethernet Work Using Multiprotocol Label Switching (MPLS)
+Multiprotocol Label Switching is a mechanism in high-performance telecommunications networks which directs and carries data from one network node to the next. MPLS makes it easy to create “virtual links” between distant nodes. It can encapsulate packets of various network protocols.
+MPLS operates at a layer that is generally considered to lie between traditional definitions of layer 2 (data link layer) and layer 3 (network layer), and thus is often referred to as a “layer 2.5″ protocol.
+It was designed to provide a unified data-carrying service for both circuit-based clients and packet-switching clients which provide a datagram service model. It can be used to carry many different kinds of traffic, including IP packets, as well as native ATM, SONET, and Ethernet frames.
+It also allows you to maintain controls on your end points using Layer 3 switching, so with the best of both worlds Metro Ethernet services can provide the speed between locations and allow network quality of service transparency desired by small businesses all with a smaller financial footprint.
+Where you might normally use Layer 3 to manage traffic in ALL locations over internet connections… with the Metro Ethernet you can use Layer 3 only as needed at end points which saves you on equipment costs and IT support costs. And you gain speed.
+
+
+OSI Layers
+– 1: physical
+– 2: data link (nbr-nbr, e.g., Ethernet)
+– 3: network (create entire path, e.g., IP)
+– 4 end-to-end (e.g., TCP, UDP)
+– 5 and above: boring
+
+
+But Ethernet does not scale. It can’t replace IP as
+the Internet Protocol
+– Flat addresses
+– No hop count
+– Missing additional protocols (such as neighbor
+discovery)
+– Perhaps missing features (such as fragmentation, error
+messages, congestion feedback)
+
+ATM: datagram, but fixed size packets (48bytes data, 5 bytes header)
+
+If you can't send a broadcast frame to another machine, they're not on your local network, and you will instead send the entire packet to a router for forwarding. That's what a Virtual LAN (VLAN) does, in essence: It makes more networks.
+
+Networking 101
+
+Understanding IP Addresses
+Understanding Subnets and CIDR
+Subnets Realized (Including IPv6)
+Networking 101: Understanding Layers On a switch, you can configure VLANs, and then assign a port to a VLAN. If host A is in VLAN 1, it can't talk to anyone in VLAN 2, just as if they lived on totally disconnected devices. Well, almost; if the bridge table is flooded and the switch is having trouble keeping up, all data will be flooded out every port. This has to happen in order for communication to continue in these situations. This needs to be pointed out because many people believe VLANs are a security mechanism. They are not even close. Anyone with half a clue about networks (or with the right cracking tool in their arsenal) can quickly overcome the VLAN broadcast segmentation. In fact, a switch will basically turn into a hub when it floods frames, spewing everyone's data to everyone else.
+
+This is accomplished with 802.1q, which will tag the packets as they leave the first switch with a VLAN identifier.
+
+kurose ross
+
+Framing. Almost all link-layer protocols encapsulate each network-layer datagram
+within a link-layer frame before transmission over the link. A frame consists
+of a data field, in which the network-layer datagram is inserted, and a
+number of header fields. The structure of the frame is specified by the link-layer
+protocol. We’ll see several different frame formats when we examine specific
+link-layer protocols in the second half of this chapter.
+• Link access. Amedium access control (MAC) protocol specifies the rules by which
+a frame is transmitted onto the link. For point-to-point links that have a single
+sender at one end of the link and a single receiver at the other end of the link, the
+MAC protocol is simple (or nonexistent)—the sender can send a frame whenever
+the link is idle. The more interesting case is when multiple nodes share a single
+broadcast link—the so-called multiple access problem. Here, the MAC protocol
+serves to coordinate the frame transmissions of the many nodes.
+• Reliable delivery. When a link-layer protocol provides reliable delivery service, it
+guarantees to move each network-layer datagram across the link without error.
+Recall that certain transport-layer protocols (such as TCP) also provide a reliable
+delivery service. Similar to a transport-layer reliable delivery service, a link-layer
+reliable delivery service can be achieved with acknowledgments and retransmissions
+(see Section 3.4). A link-layer reliable delivery service is often used for links
+that are prone to high error rates, such as a wireless link, with the goal of correcting
+an error locally—on the link where the error occurs—rather than forcing an end-toend
+retransmission of the data by a transport- or application-layer protocol. However,
+link-layer reliable delivery can be considered an unnecessary overhead for low
+bit-error links, including fiber, coax, and many twisted-pair copper links. For this
+reason, many wired link-layer protocols do not provide a reliable delivery service
+
+
+Error detection and correction. The link-layer hardware in a receiving node can
+incorrectly decide that a bit in a frame is zero when it was transmitted as a one,
+and vice versa. Such bit errors are introduced by signal attenuation and electromagnetic
+noise. Because there is no need to forward a datagram that has an error,
+many link-layer protocols provide a mechanism to detect such bit errors. This is
+done by having the transmitting node include error-detection bits in the frame,
+and having the receiving node perform an error check. Recall from Chapters 3
+and 4 that the Internet’s transport layer and network layer also provide a limited
+form of error detection—the Internet checksum. Error detection in the link layer
+is usually more sophisticated and is implemented in hardware. Error correction
+is similar to error detection, except that a receiver not only detects when bit
+errors have occurred in the frame but also determines exactly where in the frame
+the errors have occurred (and then corrects these errors).
+
+network interface card (NIC).
+
+5.2.1 Parity Checks
+Perhaps the simplest form of error detection is the use of a single parity bit. Suppose
+that the information to be sent, D in Figure 5.4, has d bits. In an even parity
+scheme, the sender simply includes one additional bit and chooses its value such
+that the total number of 1s in the d + 1 bits (the original information plus a parity
+bit) is even. For odd parity schemes, the parity bit value is chosen such that there is
+an odd number of 1s. Figure 5.4 illustrates an even parity scheme, with the single
+parity bit being stored in a separate field.
+Receiver operation is also simple with a single parity bit. The receiver need
+only count the number of 1s in the received d + 1 bits. If an odd number of 1-
+valued bits are found with an even parity scheme, the receiver knows that at least
+one bit error has occurred. More precisely, it knows that some odd number of bit
+errors have occurred.
+But what happens if an even number of bit errors occur? You should convince
+yourself that this would result in an undetected error. If the probability of bit
+errors is small and errors can be assumed to occur independently from one bit to
+the next, the probability of multiple bit errors in a packet would be extremely small.
+
+MAC broadcast address into the destination address field
+of the frame. For LANs that use 6-byte addresses (such as Ethernet and 802.11),
+the broadcast address is a string of 48 consecutive 1s (that is, FF-FF-FF-FF-FFFF
+in hexadecimal notation
+
+Students often wonder if ARP is a link-layer protocol or a network-layer protocol.
+As we’ve seen, an ARP packet is encapsulated within a link-layer frame
+and thus lies architecturally above the link layer. However, an ARP packet has
+fields containing link-layer addresses and thus is arguably a link-layer protocol,
+but it also contains network-layer addresses and thus is also arguably a networklayer
+protocol. In the end, ARP is probably best considered a protocol that straddles
+the boundary between the link and network layers
+
+Preamble
+Dest.
+address
+Source
+address
+Type
+Data
+CRC
+
+Data field (46 to 1,500 bytes). This field carries the IP datagram. The maximum
+transmission unit (MTU) of Ethernet is 1,500 bytes. This means that if the IP
+datagram exceeds 1,500 bytes, then the host has to fragment the datagram, as discussed
+in Section 4.4.1. The minimum size of the data field is 46 bytes. This
+means that if the IP datagram is less than 46 bytes, the data field has to be
+“stuffed” to fill it out to 46 bytes. When stuffing is used, the data passed to the
+network layer contains the stuffing as well as an IP datagram. The network layer
+uses the length field in the IP datagram header to remove the stuffing.
+
+type field 2 bytes
+the ARP protocol (discussed in the previous section) has its own type
+number, and if the arriving frame contains an ARP packet (i.e., has a type field
+of 0806 hexadecimal), the ARP packet will be demultiplexed up to the ARP protocol.
+Note that the type field is analogous to the protocol field in the networklayer
+datagram and the port-number fields in the transport-layer segment; all of
+these fields serve to glue a protocol at one layer to a protocol at the layer above.
+
+Cyclic redundancy check (CRC) (4 bytes). As discussed in Section 5.2.3, the purpose
+of the CRC field is to allow the receiving adapter, adapter B, to detect bit
+errors in the frame.
+
+Preamble (8 bytes). The Ethernet frame begins with an 8-byte preamble field.
+Each of the first 7 bytes of the preamble has a value of 10101010; the last byte is
+10101011. The first 7 bytes of the preamble serve to “wake up” the receiving
+adapters and to synchronize their clocks to that of the sender’s clock. Why
+should the clocks be out of synchronization? Keep in mind that adapter A aims
+to transmit the frame at 10 Mbps, 100 Mbps, or 1 Gbps, depending on the type
+of Ethernet LAN. However, because nothing is absolutely perfect, adapter A will
+not transmit the frame at exactly the target rate; there will always be some drift
+from the target rate, a drift which is not known a priori by the other adapters on
+the LAN. A receiving adapter can lock onto adapter A’s clock simply by locking
+onto the bits in the first 7 bytes of the preamble. The last 2 bits of the eighth byte
+of the preamble (the first two consecutive 1s) alert adapter B that the “important
+stuff” is about to come.
+
+
+switch Forwarding and Filtering
+
+
+Tag Protocol Identifier (TPID) field (with a fixed hexadecimal value of 81-00), a
+2-byte Tag Control Information field that contains a 12-bit VLAN identifier field,
+and a 3-bit priority field that is similar in intent to the IP datagram TOS field.
+In this discussion, we’ve only briefly touched on VLANs and have focused
+on port-based VLANs. We should also mention that VLANs can be defined in
+several other ways. In MAC-based VLANs, the network manager specifies the
+set of MAC addresses that belong to each VLAN; whenever a device attaches to
+a port, the port is connected into the appropriate VLAN based on the MAC
+address of the device. VLANs can also be defined based on network-layer protocols
+(e.g., IPv4, IPv6, or Appletalk) and other criteria. See the 802.1Q standard
+[IEEE 802.1q 2005] for more details.
+
+day in a life of HTTP
+
+When Bob first connects his laptop to the network, he can’t do anything (e.g.,
+download a Web page) without an IP address. Thus, the first network-related action
+taken by Bob’s laptop is to run the DHCP protocol to obtain an IP address, as well
+as other information, from the local DHCP server:
+1. The operating system on Bob’s laptop creates a DHCP request message (Section
+4.4.2) and puts this message within a UDP segment (Section 3.3) with
+destination port 67 (DHCP server) and source port 68 (DHCP client). The UDP
+segment is then placed within an IP datagram (Section 4.4.1) with a broadcast
+
+IP destination address (255.255.255.255) and a source IP address of 0.0.0.0,
+since Bob’s laptop doesn’t yet have an IP address.
+2. The IP datagram containing the DHCP request message is then placed within
+an Ethernet frame (Section 5.4.2). The Ethernet frame has a destination MAC
+addresses of FF:FF:FF:FF:FF:FF so that the frame will be broadcast to all
+devices connected to the switch (hopefully including a DHCP server); the
+frame’s source MAC address is that of Bob’s laptop, 00:16:D3:23:68:8A.
+3. The broadcast Ethernet frame containing the DHCP request is the first frame
+sent by Bob’s laptop to the Ethernet switch. The switch broadcasts the incoming
+frame on all outgoing ports, including the port connected to the router.
+4. The router receives the broadcast Ethernet frame containing the DHCP request
+on its interface with MAC address 00:22:6B:45:1F:1B and the IP datagram is
+extracted from the Ethernet frame. The datagram’s broadcast IP destination
+address indicates that this IP datagram should be processed by upper layer protocols
+at this node, so the datagram’s payload (a UDP segment) is thus demultiplexed
+(Section 3.2) up to UDP, and the DHCP request message is extracted
+from the UDP segment. The DHCP server now has the DHCP request message.
+5. Let’s suppose that the DHCP server running within the router can allocate IP
+addresses in the CIDR (Section 4.4.2) block 68.85.2.0/24. In this example, all
+IP addresses used within the school are thus within Comcast’s address block.
+
+
+
+Let’s suppose the DHCP server allocates address 68.85.2.101 to Bob’s laptop.
+The DHCP server creates a DHCPACK message (Section 4.4.2) containing
+this IP address, as well as the IP address of the DNS server (68.87.71.226), the
+IP address for the default gateway router (68.85.2.1), and the subnet block
+(68.85.2.0/24) (equivalently, the “network mask”). The DHCP message is put
+inside a UDP segment, which is put inside an IP datagram, which is put inside
+an Ethernet frame. The Ethernet frame has a source MAC address of the
+router’s interface to the home network (00:22:6B:45:1F:1B) and a destination
+MAC address of Bob’s laptop (00:16:D3:23:68:8A).
+
+
+The Ethernet frame containing the DHCP ACK is sent (unicast) by the router
+to the switch. Because the switch is self-learning (Section 5.4.3) and previously
+received an Ethernet frame (containing the DHCP request) from Bob’s
+laptop, the switch knows to forward a frame addressed to 00:16:D3:23:68:8A
+only to the output port leading to Bob’s laptop.
+7. Bob’s laptop receives the Ethernet frame containing the DHCP ACK, extracts
+the IP datagram from the Ethernet frame, extracts the UDP segment from the
+IP datagram, and extracts the DHCP ACK message from the UDP segment.
+Bob’s DHCP client then records its IP address and the IP address of its DNS
+server. It also installs the address of the default gateway into its IP forwarding
+table (Section 4.1). Bob’s laptop will send all datagrams with destination
+address outside of its subnet 68.85.2.0/24 to the default gateway. At this point,
+Bob’s laptop has initialized its networking components and is ready to begin
+processing the Web page fetch. (Note that only the last two DHCP steps of the
+four presented in Chapter 4 are actually necessary.)
+
+laptop
+will need to use the ARP protocol (Section 5.4.1).
+10. Bob’s laptop creates an ARP query message with a target IP address of
+68.85.2.1 (the default gateway), places the ARP message within an Ethernet
+frame with a broadcast destination address (FF:FF:FF:FF:FF:FF) and sends the
+Ethernet frame to the switch, which delivers the frame to all connected
+devices, including the gateway router.
+11. The gateway router receives the frame containing the ARP query message on the
+interface to the school network, and finds that the target IP address of 68.85.2.1 in
+the ARP message matches the IP address of its interface. The gateway router thus
+prepares an ARPreply, indicating that its MAC address of 00:22:6B:45:1F:1B
+corresponds to IP address 68.85.2.1. It places the ARP reply message in an
+Ethernet frame, with a destination address of 00:16:D3:23:68:8A (Bob’s laptop)
+and sends the frame to the switch, which delivers the frame to Bob’s laptop.
+
+Bob’s laptop receives the frame containing the ARP reply message and extracts
+the MAC address of the gateway router (00:22:6B:45:1F:1B) from the ARP
+reply message.
+13. Bob’s laptop can now ( finally!) address the Ethernet frame containing the DNS
+query to the gateway router’s MAC address. Note that the IP datagram in this frame
+has an IP destination address of 68.87.71.226 (the DNS server), while the frame has
+a destination address of 00:22:6B:45:1F:1B (the gateway router). Bob’s laptop
+sends this frame to the switch, which delivers the frame to the gateway router.
+
+
+networking http://webapps.cse.unsw.edu.au/webcms2/course/index.php?cid=2373
