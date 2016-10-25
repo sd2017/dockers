@@ -564,7 +564,7 @@ if is_new:sqlite3.executscript(schema)
 ```
 
 ##atom
-
+http://flight-manual.atom.io/using-atom/sections/find-and-replace/
 ###ubuntu atom install
    33  sudo add-apt-repository ppa:webupd8team/atom
    34  sudo apt-get update
@@ -576,6 +576,16 @@ if is_new:sqlite3.executscript(schema)
 |---|---|
 |navigate tab|ctrl-tab , ctrl shift-tab|
 |settings|ctrl-,|
+|goto symbol in file|ctrl-r|
+|goto ctag|ctrl-t   http://docs.ctags.io/en/latest/ |
+|show command pallate|ctrl-shift-p|
+|zoom|ctrl-+ , ctrl--|
+|goto begin file, goto end file|ctrl-home , ctrl-end|
+|bookmark |alt-ctrl-F2|
+|bookmark-next|F2, shift F2|
+|bookmark list|ctrl-f2|
+|pane split`TODO`|ctrl-k up/down/left/right|
+|line move|ctrl-up,ctrl-down|
 
 
 |package||
@@ -583,3 +593,4 @@ if is_new:sqlite3.executscript(schema)
 |autocomplete-plus||
 |markdown-preview|ctrl-shift-m|
 |git-plus|ctrl-shift-h `pull before push`|
+|language-todo||
