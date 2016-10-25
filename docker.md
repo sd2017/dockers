@@ -146,6 +146,7 @@ download site   wget -r --no-parent site.com
 http://www.linuxjournal.com/article/7385   , brackets braces substitution
 wget  -nH --cut-dirs=1  -np  http://higheredbcs.wiley.com/legacy/college/goodrich/1118290275/dsap/ch0{1,2,3,4,5,6,7,8,9}.zip    get 9 files , 9 inputs to command
 
+|linux|command|
 |---|---|
 |exec "$0" "$@"' |  run the script instead of command|
   |  http://superuser.com/questions/878967/what-do-these-parameters-do  |
