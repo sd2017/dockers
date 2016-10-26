@@ -86,8 +86,9 @@
 | `docker ps` / `docker ps -a`| docker list running/stopped containers |
 | `docker run -d -name1 wev1 -p` 8081:80|  ****exposing host:guest port****|
 |`docker-compose up` | building and running composed docker containers with services|
+|`docker images`| list docker images|
 
-|`docker images`| list docker images||||
+|>docker images|||||
 |---|---|---|---|
 |REPOSITORY|TAG|IMAGE ID  | CREATED  | SIZE|
 |ubuntu|16.04|45bc58500fa3    |    43 hours ago |       126.9 MB|
