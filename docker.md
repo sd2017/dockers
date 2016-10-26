@@ -5,6 +5,7 @@
 - [GIT](#git)
 - [linux commandline](#linux-commandline)
 	- [gdb](#gdb)
+- [Ubuntu](#ubuntu)
 - [pythonic](#pythonic)
 	- [list comperhention](#list-comperhention)
 		- [list comprehention example:finding words in list that contains only specific letters.](#list-comprehention-examplefinding-words-in-list-that-contains-only-specific-letters)
@@ -12,28 +13,32 @@
 	- [python details](#python-details)
 	- [python multiprocessing](#python-multiprocessing)
 		- [Lock    MUTEX   acquire-- only one can acquire , release](#lock-mutex-acquire-only-one-can-acquire-release)
-	- [with Critical section](#with-critical-section)
+			- [with Critical section](#with-critical-section)
 		- [new block code...](#new-block-code)
-	- [RLock   - rentrent lock  , can be reacuire by same thread , methods calling methods trying to acqire lock in same thread](#rlock-rentrent-lock-can-be-reacuire-by-same-thread-methods-calling-methods-trying-to-acqire-lock-in-same-thread)
-	- [Semaphore   - counting lock , acquire - waits if counter is 0 - otherwise decrement  , release increment count](#semaphore-counting-lock-acquire-waits-if-counter-is-0-otherwise-decrement-release-increment-count)
-	- [BoundedSemaphore **TBD**](#boundedsemaphore-tbd)
+		- [RLock   - rentrent lock  , can be reacuire by same thread , methods calling methods trying to acqire lock in same thread](#rlock-rentrent-lock-can-be-reacuire-by-same-thread-methods-calling-methods-trying-to-acqire-lock-in-same-thread)
+		- [Semaphore   - counting lock , acquire - waits if counter is 0 - otherwise decrement  , release increment count](#semaphore-counting-lock-acquire-waits-if-counter-is-0-otherwise-decrement-release-increment-count)
+		- [BoundedSemaphore **TBD**](#boundedsemaphore-tbd)
 		- [Event   set() , wait()](#event-set-wait)
 					- [## This can be used to have one or more](#-this-can-be-used-to-have-one-or-more)
 					- [##threads wait for something to occur](#threads-wait-for-something-to-occur)
 					- [## Setting an event will unblock all waiting](#-setting-an-event-will-unblock-all-waiting)
 					- [##threads simultaneously (if any)](#threads-simultaneously-if-any)
-		- [Event Common use : barriers, notification](#event-common-use-barriers-notification)
-		- [Using an event to signal "completion"](#using-an-event-to-signal-completion)
-			- [Done](#done)
+			- [Event Common use : barriers, notification](#event-common-use-barriers-notification)
+			- [Using an event to signal "completion"](#using-an-event-to-signal-completion)
+					- [#####Done](#done)
 	- [Condition](#condition)
 					- [## Do something with x](#-do-something-with-x)
+		- [python multiprocess design](#python-multiprocess-design)
+			- [CPU bound use multiprocessing Process](#cpu-bound-use-multiprocessing-process)
+			- [IO bound use multiprocessing  Threading.Thread. `TBD`windows launch is in __main__ !!!](#io-bound-use-multiprocessing-threadingthread-tbdwindows-launch-is-in-main-)
+			- [Process do not share same data , do not need locks  , do join , daemon , terminate!](#process-do-not-share-same-data-do-not-need-locks-do-join-daemon-terminate)
+			- [python start point in script](#python-start-point-in-script)
 		- [unknown exception info](#unknown-exception-info)
 - [python sqlite3](#python-sqlite3)
 - [Atom](#atom)
 		- [ubuntu atom install](#ubuntu-atom-install)
 - [networking layer2](#networking-layer2)
 - [markdown](#markdown)
-- [H1](#h1)
 	- [H2](#h2)
 		- [H3](#h3)
 			- [H4](#h4)
@@ -371,7 +376,7 @@ p = subprocess.Popen(['python','child.py'],
 p.stdout.read(size) # Read data from subprocess
 
 ###python multiprocess design
-####  CPU bound use multiprocessing Process 
+####  CPU bound use multiprocessing Process
 ####  IO bound use multiprocessing  Threading.Thread. `TBD`windows launch is in __main__ !!!
 ####Process do not share same data , do not need locks  , do join , daemon , terminate!
 ```python
