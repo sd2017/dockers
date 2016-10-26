@@ -114,6 +114,8 @@ https://docs.docker.com/engine/reference/builder/  Dockerfile builder
 |git tag  0.1  -m "initial from http://www.qtrac.eu/pipbook-1.0.tar.gz"|tag number and messege|   
 |git push|moving upstream from local to remote repository|
 |git pull --rebase `TBD`||
+|git fetch --all| get remote repository , http://stackoverflow.com/questions/1125968/how-to-force-git-pull-to-overwrite-local-files 
+|
 |---|---|
 
 
@@ -1022,12 +1024,18 @@ sends this frame to the switch, which delivers the frame to the gateway router.
 networking http://webapps.cse.unsw.edu.au/webcms2/course/index.php?cid=2373
 
 #markdown
-https://github.com/voldyman/MarkMyWords
-https://www.maketecheasier.com/markdown-editors-linux/
-https://guides.github.com/features/mastering-markdown/
-https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet  
-https://github.com/retext-project/retext
-gi# H1
+|link||
+|---|---|
+|guide|https://guides.github.com/features/mastering-markdown/|
+|cheatsheet|https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet  |
+|editor cpp qt|https://github.com/sd2017/CuteMarkEd  |
+|editor build instructions|https://github.com/cloose/CuteMarkEd/wiki/Build-Instructions|
+|editor github like |https://github.com/voldyman/MarkMyWords|
+|editor|https://github.com/retext-project/retext|
+|list|https://www.maketecheasier.com/markdown-editors-linux/|
+|list|http://mashable.com/2013/06/24/markdown-tools/#nbtn9HlaZkqL|
+
+# H1
 ## H2
 ### H3
 #### H4
