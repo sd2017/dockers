@@ -132,8 +132,7 @@ egrep -a $'hudson.lab.' /etc/hosts
 
 |linux|commands|
 |---|---|
-
-|echo '123:456'!  cut -d: -f1 |     -string coloumns|
+|echo '123:456'!  cut -d: -f1 |string coloumns|
 | http://unix.stackexchange.com/questions/81349/how-do-i-use-find-when-the-filename-contains-spaces ||
 | http://www.linuxjournal.com/article/7385   | brackets braces substitution|
 |||
@@ -243,7 +242,7 @@ multiple pythons  process do have multipython interperter
 ##python multiprocessing
 ###Lock    MUTEX   acquire-- only one can acquire , release  
 
-## with Critical section
+#### with Critical section
 ```python
 with x_lock:
   statements using x
@@ -273,7 +272,7 @@ y_lock = threading.Lock()
 
 
 
-## RLock   - rentrent lock  , can be reacuire by same thread , methods calling methods trying to acqire lock in same thread
+### RLock   - rentrent lock  , can be reacuire by same thread , methods calling methods trying to acqire lock in same thread
 ```python
 class Foo(object):
   lock = threading.RLock()
@@ -287,9 +286,9 @@ def spam(self):
 		...
 ```
 
-## Semaphore   - counting lock , acquire - waits if counter is 0 - otherwise decrement  , release increment count
+### Semaphore   - counting lock , acquire - waits if counter is 0 - otherwise decrement  , release increment count
 	use --- limithing number of threads doing operation , signaling
-## BoundedSemaphore **TBD**
+### BoundedSemaphore **TBD**
 
 ### Event   set() , wait()
 ```python
@@ -304,7 +303,7 @@ e.wait() # Wait for event
 ########threads simultaneously (if any)
 ```
 
-### Event Common use : barriers, notification
+#### Event Common use : barriers, notification
 Using an event to ensure proper initialization
 ```python
 init = threading.Event()
@@ -321,8 +320,9 @@ Thread(target=worker).start() # Launch workers
 Thread(target=worker).start()
 Thread(target=worker).start()
 initialize()
-
-### Using an event to signal "completion"
+```
+#### Using an event to signal "completion"
+```python
 	def master():
 	...
 	item = create_item()
@@ -344,7 +344,7 @@ processing
 processing
 ...
 ...
-####Done
+###########Done
 evt.set()
 ```
 ## Condition
@@ -370,9 +370,10 @@ p = subprocess.Popen(['python','child.py'],
 	p.stdin.write(data) # Send data to subprocess
 p.stdout.read(size) # Read data from subprocess
 
-
-python!!!! on CPU bound use multiprocessing.Process instead of Threading.Thread    windows launch is in __main__ !!!
-Process do not share same data , do not need locks  , do join , daemon , terminate!
+###python multiprocess design
+####  CPU bound use multiprocessing Process 
+####  IO bound use multiprocessing  Threading.Thread. `TBD`windows launch is in __main__ !!!
+####Process do not share same data , do not need locks  , do join , daemon , terminate!
 ```python
 import time
 import multiprocessing
@@ -509,12 +510,15 @@ with open("foo.txt", "w") as src1:
        gaga()
 ```
 
+```python
 python -o
 if __debug__
-
+```
+####python start point in script
+```python
 if __name__=="__main__":
 empty  __init__.py  --->  from filepy import *
-
+```
 
 
 
