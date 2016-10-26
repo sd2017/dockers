@@ -200,7 +200,8 @@ search available packages          >apt-cache search keyword
 |packages, search  availablity | >apt-cache search keyword|
 |packages, install|apt-get install -y build-essential gnome-commander geany meld netbeans codeblocks_ide terminator  |
 |packages removal | sudo apt-get remove   libwebkit2gtk-3.0-25-dbg  |
-
+|packages history | grep "\ install\ " /var/log/dpkg.log http://askubuntu.com/questions/21657/how-do-i-show-apt-get-package-management-history-via-command-line |
+|grep "\ install\ " /var/log/apt/history.log| packages history formatted |
 #pythonic
 
 ##list comperhention
