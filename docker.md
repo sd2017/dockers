@@ -7,7 +7,7 @@
 	- [gdb](#gdb)
 - [Ubuntu](#ubuntu)
 - [pythonic](#pythonic)
-	- [list comperhention](#list-comperhention)
+	- [list comprehension](#list-comperhention)
 		- [list comprehention example:finding words in list that contains only specific letters.](#list-comprehention-examplefinding-words-in-list-that-contains-only-specific-letters)
 		- [withouth list comprehention example:finding words in list that contains only specific letters.](#withouth-list-comprehention-examplefinding-words-in-list-that-contains-only-specific-letters)
 	- [python details](#python-details)
@@ -140,10 +140,36 @@ egrep -a $'hudson.lab.' /etc/hosts
 
 |linux|commands|
 |---|---|
+|diff -u hello.c hello_new.c > hello.patch|creating patch|
+|patch < hello.patch| patching one file|
+|diff -Naur /usr/src/openvpn-2.3.2 /usr/src/openvpn-2.3.4 > openvpn.patch|creating patch for directory|
+|patch -p3 < /root/openvpn.patch|patch skiping p3 leading slashes in the filename|
+|patch -b < hello.patch|patch with backup|
+|patch --dry-run < hello.patch|validating patch i.e dry run
+|patch -R < hello.patch|undo patch | 
 |echo '123:456'!  cut -d: -f1 |string coloumns|
 | http://unix.stackexchange.com/questions/81349/how-do-i-use-find-when-the-filename-contains-spaces ||
 | http://www.linuxjournal.com/article/7385   | brackets braces substitution|
 |||
+
+
+|linux|command|
+|---|---|
+|exec "$0" "$@"' |  run the script instead of command|
+  |  http://superuser.com/questions/878967/what-do-these-parameters-do  |
+  |http://askubuntu.com/questions/368509/why-is-0-set-to-bash                                         |
+  |   unzip 	  ch0{1,2,3,4,5,6,7,8,9}.zip   | not working because they stuff all the files onto the same command line. While that works with most programs, unzip will take the first argument as the zip file, and any after the first as files to extract from it. You need to execute the command once for each file:|
+|nproc|number of processprs|
+|lscpu|info on cpu|
+|find . -name '*.zip' -exec unzip {} \;|`TBD`|
+|find . -name 'cpf.log'  -exec grep 'onverting from' {} \;||
+|useradd user||
+|userdel user||
+|top -b -n 1||
+|top -b -c    -n 1 ||
+|tree ~/ |display directories structure|
+find . -name *.zip -print0 | xargs -0 -n1 unzip
+lsof -ln -sTCP:ESTABLISHED -i:50039|head -2|tail -1
 
 |wget||
 |---|---|
@@ -167,23 +193,7 @@ download site   wget -r --no-parent site.com
 http://www.linuxjournal.com/article/7385   , brackets braces substitution
 wget  -nH --cut-dirs=1  -np  http://higheredbcs.wiley.com/legacy/college/goodrich/1118290275/dsap/ch0{1,2,3,4,5,6,7,8,9}.zip    get 9 files , 9 inputs to command
 
-|linux|command|
-|---|---|
-|exec "$0" "$@"' |  run the script instead of command|
-  |  http://superuser.com/questions/878967/what-do-these-parameters-do  |
-  |http://askubuntu.com/questions/368509/why-is-0-set-to-bash                                         |
-  |   unzip 	  ch0{1,2,3,4,5,6,7,8,9}.zip   | not working because they stuff all the files onto the same command line. While that works with most programs, unzip will take the first argument as the zip file, and any after the first as files to extract from it. You need to execute the command once for each file:|
-|nproc|number of processprs|
-|lscpu|info on cpu|
-|find . -name '*.zip' -exec unzip {} \;|`TBD`|
-|find . -name 'cpf.log'  -exec grep 'onverting from' {} \;||
-|useradd user||
-|userdel user||
-|top -b -n 1||
-|top -b -c    -n 1 ||
 
-find . -name *.zip -print0 | xargs -0 -n1 unzip
-lsof -ln -sTCP:ESTABLISHED -i:50039|head -2|tail -1
 
 ##gdb
 (gdb) set solib-absolute-prefix /junk
@@ -216,9 +226,20 @@ search available packages          >apt-cache search keyword
 |packages removal | sudo apt-get remove   libwebkit2gtk-3.0-25-dbg  |
 |packages history | grep "\ install\ " /var/log/dpkg.log http://askubuntu.com/questions/21657/how-do-i-show-apt-get-package-management-history-via-command-line |
 |grep "\ install\ " /var/log/apt/history.log| packages history formatted |
+
+#pycharm
+|run debug |configuration|
+|---|---|
+|runing several configurations|compound|
+|adding project sources to pythonpath|python , checkbox Add source root to PYTHONPATH|
+|not running multiuple times|checkbox-Single instance only|
 #pythonic
 
-##list comperhention
+identitiy testing  
+a="first" b="first"
+assert ( (a is b)  == False)
+assert ( (a == b)  == True)
+##list comprehension
 
 ```python
  new_list = ["something with " + ITEM for ITEM in iterable if condition_based_on(ITEM)]
@@ -230,14 +251,26 @@ new_list = []
     if condition_based_on(ITEM):
         new_list.append("something with " + ITEM)
 ```
-
-###list comprehention example:finding words in list that contains only specific letters.
+###list comprehention example:transform and contition for elements
 ```python
-wordlist = ['mississippi','miss','lake','que']
-letters = set('aqk')
-list=[]
-list=[word in wordlist if letters & set(word) ]
+
+  theoldlist=[1,2,3,4,4,5,6,7,6.5,5.5,4.5,3.5]
+  thenewlist = [x + 100 for x in theoldlist if x > 5]
+  print "transformed filtered list:{}".format(thenewlist)
 ```
+>transformed filtered list:[106, 107, 106.5, 105.5]
+
+
+###list comprehention example:finding words in list that contains specific letters.
+```python
+    wordlist = ['mississippi', 'miss', 'lake', 'que']
+    letters = set('aqk')
+    list = [word for word in wordlist if (letters & set(word))]
+    print "wordlist found:{} containing from :{}".format(list,letters)
+```
+>wordlist found:['lake', 'que'] containing from :set(['a', 'q', 'k'])
+
+
 ###withouth list comprehention example:finding words in list that contains only specific letters.
 ```python
 wordlist = ['mississippi','miss','lake','que']
@@ -247,6 +280,19 @@ for word in wordlist:
         print word
 ```
 
+###python lambda is an anonimous function, used as ad-hoc function.
+
+|long faunction|lambda|
+|def prod(a,b) :return a*b |x=lambda a,b: a*b|
+|def prod2(a,b=6) :return a*b |y=lambda a,b=6:a*b|
+|def tuple_arg(*tup):return tup |z=lambda *tup: tup|
+x(5,6)
+
+```python
+list_years={1968,1970,1980}
+leap_years=filter(lambda n:n%4==0,list_year)  
+print "leap_years:{}".format(leap_years)
+```
 ##python details
 
 all python methods are virtual
@@ -689,13 +735,18 @@ print os.path.dirname(inspect.getfile(inspect.currentframe())) # script director
 
 class A(object)  class B(A) __init__() super(B,self).__init__()		http://stackoverflow.com/questions/9698614/super-raises-typeerror-must-be-type-not-classobj-for-new-style-class    solve: TypeError: must be type, not classobj
 
-#python sqlite3
+##python sqlite3
 
 https://github.com/sqlitebrowser/sqlitebrowser/releases
 ```python
 sqlite3 . connect
 if is_new:sqlite3.executscript(schema)    
 ```
+
+##python scipy combining c/cpp 2014 https://www.youtube.com/watch?v=GE8EsGUsC2w
+
+#patterns
+https://en.wikipedia.org/wiki/Closure_(computer_programming)
 
 #Atom
 http://flight-manual.atom.io/using-atom/sections/find-and-replace/
@@ -740,7 +791,155 @@ http://flight-manual.atom.io/using-atom/sections/find-and-replace/
 |Todo-Show||
 |minimap|code navigtion|
 
+#Regular Expressions
+https://github.com/aloisdg/awesome-regex
+https://developers.google.com/edu/python/regular-expressions
+Mastering_Python_Regular_expressions.pdf
 
+|action|syntax|example|
+|---|---|---|
+|search |search re in all the input|
+|match  |matching re to line begin|
+|optimized bytecode|compile|compiled_bytecode = re.compile(r'word:\w\w\w', str)|
+|using bytecode in line begin|match|match = compiled_bytecode.search(str)|
+|searching in string|search|match = re.search(r'word:\w\w\w', str)|
+|found list corresponding to regex list|group|match.group() match.group(0)  |
+|found first elemnt in list corresponding to regex list|group|match.group(1)|
+| group not exist|IndexError|match.group() match.group(999)  |
+|regular expression raw string|r|r''word:\w\w\w'||  
+|list of found regexes, in all lines |findall|emails_lisr = re.findall(r'[\w\.-]+@[\w\.-]+', str)|
+|named group|?P<name>regex| pattern = re.compile(r"(?P<first>\w+) (?P<second>\w+)")
+|dictionary with results |groupdict|dicta=pattern.search("Hello⇢world").groupdict()|
+|dictionary|groupdict returns |{'first': 'Hello', 'second': 'world'}|
+
+###Basic regex Patterns
+    a, X, 9, < -- ordinary characters just match themselves exactly. The meta-characters which do not match themselves because they have special meanings are: . ^ $ * + ? { [ ] \ | ( ) (details below)
+    . (a period) -- matches any single character except newline '\n'
+    \w -- (lowercase w) matches a "word" character: a letter or digit or underbar [a-zA-Z0-9_]. Note that although "word" is the mnemonic for this, it only matches a single word char, not a whole word. \W (upper case W) matches any non-word character.
+    \b -- boundary between word and non-word
+    \s -- (lowercase s) matches a single whitespace character -- space, newline, return, tab, form [ \n\r\t\f]. \S (upper case S) matches any non-whitespace character.
+    \t, \n, \r -- tab, newline, return
+    \d -- decimal digit [0-9] (some older regex utilities do not support but \d, but they all support \w and \s)
+    ^ = start, $ = end -- match the start or end of the string
+    \ -- inhibit the "specialness" of a character. So, for example, use \. to match a period or \\ to match a slash. If you are unsure if a character has special meaning, such as '@', you can put a slash in front of it, \@, to make sure it is treated just as a character. 
+
+|boundry| matchers |
+|---|---|
+|^| begin line|
+|$| end line|
+|\b| word boundy|
+|\B| not a word boundry|
+|\A| input begin|
+|\Z| input end|
+
+
+
+        print 'found--->', match.group() ## 'found word:cat'
+
+###Greedy Repetition. + and * specify largest repetition in the pattern
+finding leftmost and largest matching(greedy)
+    + -- 1 or more occurrences of the pattern to its left, e.g. 'i+' = one or more i's
+    * -- 0 or more occurrences of the pattern to its left
+    ? -- match 0 or 1 occurrences of the pattern to its left 
+
+
+###Set of chars:Square Brackets
+
+Square brackets indicate a set of chars, so [abc] matches 'a' or 'b' or 'c'. The codes \w, \s etc. work inside square brackets too with the one exception that dot (.) just means a literal dot. For the emails problem, the square brackets are an easy way to add '.' and '-' to the set of chars which can appear around the @ with the pattern r'[\w.-]+@[\w.-]+' to get the whole email address:
+
+```python
+  match = re.search(r'[\w.-]+@[\w.-]+', str)
+  if match:
+    print match.group()  ## 'alice-b@google.com'
+```
+(More square-bracket features) You can also use a dash to indicate a range, so [a-z] matches all lowercase letters. To use a dash without indicating a range, put the dash last, e.g. [abc-]. An up-hat (^) at the start of a square-bracket set inverts it, so [^ab] means any char except 'a' or 'b'. 
+
+
+Group Extraction
+
+The "group" feature of a regular expression allows you to pick out parts of the matching text. Suppose for the emails problem that we want to extract the username and host separately. To do this, add parenthesis ( ) around the username and host in the pattern, like this: r'([\w.-]+)@([\w.-]+)'. In this case, the parenthesis do not change what the pattern will match, instead they establish logical "groups" inside of the match text. On a successful search, match.group(1) is the match text corresponding to the 1st left parenthesis, and match.group(2) is the text corresponding to the 2nd left parenthesis. The plain match.group() is still the whole match text as usual.
+```python
+  str = 'purple alice-b@google.com monkey dishwasher'
+  match = re.search('([\w.-]+)@([\w.-]+)', str)
+  if match:
+    print match.group()   ## 'alice-b@google.com' (the whole match)
+    print match.group(1)  ## 'alice-b' (the username, group 1)
+    print match.group(2)  ## 'google.com' (the host, group 2)
+```
+A common workflow with regular expressions is that you write a pattern for the thing you are looking for, adding parenthesis groups to extract the parts you want.
+
+###RE Workflow and Debug
+
+run RE on a small test text. print findall() result. If the pattern matches nothing, try weakening the pattern, removing parts of it so you get too many matches.
+When it's matching nothing, you can't make any progress since there's nothing concrete to look at. 
+Once it's matching too much, then you can work on tightening it up incrementally to hit expected.
+
+###RE functions Options
+
+Option flag added as to the search() or findall() etc.
+```python
+ re.search(pat, str, re.IGNORECASE).
+```
+    IGNORECASE -- ignore upper/lowercase differences for matching, so 'a' matches both 'a' and 'A'.
+    DOTALL -- allow dot (.) to match newline -- normally it matches anything but newline. This can trip you up -- you think .* matches everything, but by default it does not go past the end of a line. Note that \s (whitespace) includes newlines, so if you want to match a run of whitespace that may include a newline, you can just use \s*
+    MULTILINE -- Within a string made of many lines, allow ^ and $ to match the start and end of each line. Normally ^/$ would just match the start and end of the whole string. 
+
+###RE non greedy, stop search as soon match is found
+```python
+tag_string= "<b>foo</b> and <i>so on</i>"
+greedy_search=string(tag_string)
+non_ready_search="<b>"
+assert(re.search(r'(<.*>)',tag_string) == greedy_search)
+assert(re.search(r'(<.*?>)',tag_string) == non_greedy_search)
+```
+The result is a little surprising, but the greedy aspect of the .* causes it to match the whole '<b>foo</b> and <i>so on</i>' as one big match. The problem is that the .* goes as far as is it can, instead of stopping at the first > (aka it is "greedy").
+
+There is an extension to regular expression where you add a ? at the end, such as .*? or .+?, changing them to be non-greedy. Now they stop as soon as they can. So the pattern '(<.*?>)' will get just '<b>' as the first match, and '</b>' as the second match, and so on getting each <..> pair in turn. The style is typically that you use a .*?, and then immediately its right look for some concrete marker (> in this case) that forces the end of the .*? run.
+
+? syntax is pcre i.e perl compatible re
+
+###Substitution 
+
+re.sub(pattern, replacement, str)  replaces all the instances of pattern str.
+ The replacement string can include '\1', '\2' which refer to the text from group(1), group(2), and so on from the original matching text.
+
+####email addresses sustitute, keep the user (\1) but change host to  yo-yo-dyne.com .
+
+  str = 'purple alice@google.com, blah monkey bob@abc.com blah dishwasher'
+  ## re.sub(pat, replacement, str) -- returns new string with all replacements,
+  ## \1 is group(1), \2 group(2) in the replacement
+  print re.sub(r'([\w\.-]+)@([\w\.-]+)', r'\1@yo-yo-dyne.com', str)
+  ## purple alice@yo-yo-dyne.com, blah monkey bob@yo-yo-dyne.com blah dishwasher
+
+
+### python RE excercise https://developers.google.com/edu/python/exercises/baby-names
+
+##python test pakcages
+`TODO`https://wiki.python.org/moin/UsingAssertionsEffectively
+
+
+#Java
+##ubuntu java setup
+http://stackoverflow.com/questions/30116439/selected-directory-is-not-a-valid-home-for-jdk-intellij-idea-on-ubuntu
+http://askubuntu.com/questions/130186/what-is-the-rationale-for-the-usr-directory where to install software in linux
+##maven project
+
+directory structure
+
+```
+.
++--_lib
++--_src
+| +--_main
+|    +--_java
+|       +--src1.java
+|       +--src2.java 
++--_target
+|   +--_classes
+|   +--_dependency
+|   +--_...
+|   +--out.jar 
+```
 #networking layer2
 ==================
 http://smallbiztrends.com/2013/09/osi-model-layer-networking.html
@@ -1030,10 +1229,14 @@ networking http://webapps.cse.unsw.edu.au/webcms2/course/index.php?cid=2373
 |cheatsheet|https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet  |
 |editor cpp qt|https://github.com/sd2017/CuteMarkEd  |
 |editor build instructions|https://github.com/cloose/CuteMarkEd/wiki/Build-Instructions|
+|commercial editor|http://askubuntu.com/questions/172698/how-do-i-install-sublime-text-2-3|
+|run python from md snippets|https://pypi.python.org/pypi/Pweave|
 |editor github like |https://github.com/voldyman/MarkMyWords|
 |editor|https://github.com/retext-project/retext|
 |list|https://www.maketecheasier.com/markdown-editors-linux/|
 |list|http://mashable.com/2013/06/24/markdown-tools/#nbtn9HlaZkqL|
+
+`TODO` http://mpastell.com/pweave/usage.html http://mpastell.com/pweave/usage.html http://iaingallagher.tumblr.com/post/41359279059/python-pweave-and-pandoc-howto
 
 # H1
 ## H2
@@ -1081,5 +1284,7 @@ Markdown | Less | Pretty
 1 | 2 | 3
 
 quote >
+
+http://stackoverflow.com/questions/23989232/is-there-a-way-to-represent-a-directory-tree-in-a-github-readme-md
 
 http://stackoverflow.com/questions/28508141/code-block-inside-table-row-in-markdown
