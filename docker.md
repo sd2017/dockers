@@ -89,7 +89,7 @@
 |`docker images`| list docker images|
 
 |>docker images|||||
-|---|---|---|---|
+| ---       | --- | --- | --- | ---|
 |REPOSITORY|TAG|IMAGE ID  | CREATED  | SIZE|
 |ubuntu|16.04|45bc58500fa3    |    43 hours ago |       126.9 MB|
 
