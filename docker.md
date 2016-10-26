@@ -148,13 +148,20 @@ egrep -a $'hudson.lab.' /etc/hosts
 |wget  -nH --cut-dirs=1  -np http://higheredbcs.wiley.com/legacy/college/goodrich/1118290275/dsap/ch0{1,2,3,4,5,6,7,8,9}.zip  |wget removing top site dirs,    get 9 files , 9 inputs to command|
 |wget  -r   --no-parent -np   --no-host-directories -nH   http://www.tutorialspoint.com/unix_commands/wget.htm
 
-  175  wget -nc  -nH --cut-dirs=1 http://www.netobjectives.com/resources/books/design-patterns-explained/review-questions
-  181  wget -r http://www.netobjectives.com/resources/books/design-patterns-explained/java-code-examples/
-  185  wget -r -np  http://www.netobjectives.com/resources/books/design-patterns-explained/
-  192  wget -r -nh  -np  http://www.netobjectives.com/resources/books/design-patterns-explained/
-  193  wget -r -nH  -np  http://www.netobjectives.com/resources/books/design-patterns-explained/
-       wget -r -nH --cut-dirs=2 -np   --convert-links  http://www.netobjectives.com/resources/books/design-patterns-explained/
+wget -nc  -nH --cut-dirs=1 http://www.netobjectives.com/resources/books/design-patterns-explained/review-questions
+
+wget -r www.netobjectives.com/resources/books/design-patterns-explained/java-code-examples/
+
+wget -r -np  www.netobjectives.com/resources/books/design-patterns-explained/
+
+wget -r -nh  -np  www.netobjectives.com/resources/books/design-patterns-explained/
+
+wget -r -nH  -np  www.netobjectives.com/resources/books/design-patterns-explained/
+
+wget -r -nH --cut-dirs=2 -np   --convert-links  www.netobjectives.com/resources/books/design-patterns-explained/
+
 download site   wget -r --no-parent site.com
+
 http://www.linuxjournal.com/article/7385   , brackets braces substitution
 wget  -nH --cut-dirs=1  -np  http://higheredbcs.wiley.com/legacy/college/goodrich/1118290275/dsap/ch0{1,2,3,4,5,6,7,8,9}.zip    get 9 files , 9 inputs to command
 
