@@ -179,7 +179,27 @@ info locals
 info reg
 set solib-search-path /disks/uilstore6/disk601/sdagany/gdb_dov/uClibc-nptl-0.9.29-20070423
 
+#Ubuntu
 
+lubuntu lxde fast lightweight  https://help.ubuntu.com/community/Lubuntu/GetLubuntu/LTS http://cdimage.ubuntu.com/lubuntu/releases/xenial/release/
+ubuntu gparted.iso disc partition , boot from and resize
+apt-get install system-config-lvm    http://askubuntu.com/questions/196125/how-can-i-resize-an-lvm-partition-i-e-physical-volume
+apt list --installed
+baobab   -->ubuntu disk usage
+
+
+dpkg -S /usr/lib/debug/usr/lib/x86_64-linux-gnu/libwebkitgtk-3.0.so.0.22.15
+sudo apt-get remove   libwebkitgtk-3.0-0-dbg
+http://askubuntu.com/questions/712190/files-in-usr-lib-debug-usr-lib-taking-a-lot-of-space-how-to-free-it   diskspace
+
+find installed ubuntu packages     >dpkg --get-selections | grep -v deinstall  
+search available packages          >apt-cache search keyword
+
+|Ubuntu|commands|
+|---|---|
+|packages, search  availablity | >apt-cache search keyword|
+|packages, install|apt-get install -y build-essential gnome-commander geany meld netbeans codeblocks_ide terminator  |
+|packages removal | sudo apt-get remove   libwebkit2gtk-3.0-25-dbg  |
 
 #pythonic
 
@@ -989,7 +1009,7 @@ https://www.maketecheasier.com/markdown-editors-linux/
 https://guides.github.com/features/mastering-markdown/
 https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet  
 https://github.com/retext-project/retext
-# H1
+gi# H1
 ## H2
 ### H3
 #### H4
