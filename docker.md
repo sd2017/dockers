@@ -87,6 +87,7 @@
 | `docker run -d -name1 wev1 -p` 8081:80|  ****exposing host:guest port****|
 |`docker-compose up` | building and running composed docker containers with services|
 |`docker images`| list docker images|
+| `docker start -i  8508e3ddf819` |activating stopped interactive container|
 
 |>docker images|||||
 | ---       | --- | --- | --- | ---|
@@ -168,7 +169,8 @@ egrep -a $'hudson.lab.' /etc/hosts
 |top -b -n 1||
 |top -b -c    -n 1 ||
 |tree ~/ |display directories structure|
-find . -name *.zip -print0 | xargs -0 -n1 unzip
+
+find . -name "*.zip" -print0 | xargs -0 -n1 unzip `unzip multiple files`
 lsof -ln -sTCP:ESTABLISHED -i:50039|head -2|tail -1
 
 |wget||
@@ -234,6 +236,8 @@ search available packages          >apt-cache search keyword
 |adding project sources to pythonpath|python , checkbox Add source root to PYTHONPATH|
 |not running multiuple times|checkbox-Single instance only|
 #pythonic
+http://www.fullstackpython.com/table-of-contents.html
+http://stackoverflow.com/questions/8248397/how-to-know-change-current-directory-in-python-shell
 
 identitiy testing  
 a="first" b="first"
@@ -795,6 +799,7 @@ http://flight-manual.atom.io/using-atom/sections/find-and-replace/
 https://github.com/aloisdg/awesome-regex
 https://developers.google.com/edu/python/regular-expressions
 Mastering_Python_Regular_expressions.pdf
+https://github.com/Apress/regular-expression-recipes `TODO`
 
 |action|syntax|example|
 |---|---|---|
@@ -940,6 +945,62 @@ directory structure
 |   +--_...
 |   +--out.jar 
 ```
+
+##threadsafe
+
+
+|threadsafe in java||
+|---|---|
+|`TBD`thread|||
+|`TBD` atomic variable |java.util.concurrent.atomic AtomicLong||
+|intrinsic reentrant lock |synchronized|public synchronized void service(){}|
+|stale  data | reader thread examines data, value can be out of date. Unless synchronization is  used|
+|safety on reading 2*32 data|volatile long number|
+|`todo`|https://samxiangyu.wordpress.com/2015/02/20/java-concurrency-guardedby/|
+|`todo`|http://winterbe.com/posts/2015/04/30/java8-concurrency-tutorial-synchronized-locks-examples/|
+|`todo`|https://dzone.com/articles/concurrency-hot-try-jcip|
+
+###compound actions: operations that must be executed atomically in order to remain thread safe , like read modify write, check then act(initialize)
+
+####wrong!!!!poor responsiveness can used only by one thread 
+####synchronizing shortest possible code paths
+```java
+public synchronized void service(ServletRequest req,ServletResponse resp) {
+	BigInteger i = extractFromRequest(req);
+	if (i.equals(lastNumber))
+		encodeIntoResponse(resp, lastFactors);
+	else {
+		BigInteger[] factors = factor(i);
+		lastNumber = i;
+		lastFactors = factors;
+	encodeIntoResponse(resp, factors);
+	}
+}
+```
+
+####Intrinsic reentrant lock
+```java
+public class Widget {
+		public synchronized void doSomething() {
+		...
+		}
+}
+public class LoggingWidget extends Widget {
+		public synchronized void doSomething() {
+			System.out.println(toString() + ": calling doSomething");
+			super.doSomething();
+		}
+}
+```
+
+##java jdk error
+
+
+openjdk 64-bit server vm warning insufficient space for shared memory file error
+$df
+tmpfs 102400 102312 88 100% /tmp
+`change the size of the tmp file:`
+$sudo mount -o remount,size=2G /tmp 
 #networking layer2
 ==================
 http://smallbiztrends.com/2013/09/osi-model-layer-networking.html
@@ -1288,3 +1349,47 @@ quote >
 http://stackoverflow.com/questions/23989232/is-there-a-way-to-represent-a-directory-tree-in-a-github-readme-md
 
 http://stackoverflow.com/questions/28508141/code-block-inside-table-row-in-markdown
+
+
+#epub
+https://www.linuxbabe.com/desktop-linux/4-epub-reader-to-view-epub-files-on-ubuntu-16-0414-04
+sudo apt-get install fbreader
+sudo apt-get install okular okular-extra-backends
+
+#database
+https://github.com/Apress/relational-db-programming
+##couchdb
+http://www.ibm.com/developerworks/library/os-couchdb/
+https://www.tutorialspoint.com/couchdb/couchdb_introduction.htm
+http://www.ibm.com/developerworks/library/wa-docker-polyglot-programmers/index.html
+
+##elasticsearch http://www.ibm.com/developerworks/opensource/library/j-use-elasticsearch-java-apps/index.html
+
+##books
+https://github.com/Apress/next-generation-dbs
+https://github.com/Apress/python-data-analytics
+
+#javascript
+https://github.com/Apress/pro-grunt.js
+https://github.com/Apress/pro-react
+
+#books code examples
+https://github.com/Apress/
+https://github.com/Apress/design-concepts-w-code
+https://github.com/Apress/practical-api-design
+
+##big data
+https://github.com/Apress/big-data-made-easy
+https://github.com/izenecloud/big-data-made-easy
+https://github.com/onurakpolat/awesome-bigdata
+
+#java
+https://github.com/Apress/java-8-recipes
+#cpp
+https://github.com/Apress/cpp-recipes
+https://github.com/Apress/cpp-standard-library-quick-reference/tree/master/Chapter%207  threads
+
+#redis
+https://github.com/JamzyWang/awesome-redis
+https://github.com/rediscookbook/rediscookbook
+https://github.com/josiahcarlson/redis-in-action
