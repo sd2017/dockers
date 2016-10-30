@@ -218,6 +218,27 @@ dpkg -S /usr/lib/debug/usr/lib/x86_64-linux-gnu/libwebkitgtk-3.0.so.0.22.15
 sudo apt-get remove   libwebkitgtk-3.0-0-dbg
 http://askubuntu.com/questions/712190/files-in-usr-lib-debug-usr-lib-taking-a-lot-of-space-how-to-free-it   diskspace
 
+##resising lvm partition to use all disk space 
+http://ryandoyle.net/posts/expanding-a-lvm-partition-to-fill-remaining-drive-space/
+`TODO`shoshan@lubuntu1:~/github/CuteMarkEd$ sudo pvresize /dev/sda5 
+  Physical volume "/dev/sda5" changed
+  1 physical volume(s) resized / 0 physical volume(s) not resized
+
+shoshan@lubuntu1:~/github/CuteMarkEd$ sudo lvresize -l +100%FREE /dev/mapper/lubuntu--vg-root 
+  Size of logical volume lubuntu-vg/root changed from 26.52 GiB (6789 extents) to 81.52 GiB (20870 extents).
+  Logical volume root successfully resized.
+
+$ sudo resize2fs  /dev/mapper/lubuntu--vg-root
+resize2fs 1.42.13 (17-May-2015)
+Filesystem at /dev/mapper/lubuntu--vg-root is mounted on /; on-line resizing required
+old_desc_blocks = 2, new_desc_blocks = 6
+The filesystem on /dev/mapper/lubuntu--vg-root is now 21370880 (4k) blocks long.
+
+
+$df
+
+
+
 find installed ubuntu packages     >dpkg --get-selections | grep -v deinstall  
 search available packages          >apt-cache search keyword
 
@@ -992,6 +1013,11 @@ public class LoggingWidget extends Widget {
 		}
 }
 ```
+####volatile recomentded use for status flags threadsafe 
+volatile boolean asleep;
+...
+while (!asleep)
+countSomeSheep();
 
 ##java jdk error
 
