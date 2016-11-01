@@ -1,0 +1,1 @@
+docker run --name posterTry -e POSTGRES_PASSWORD=database -d postgres:9.6.0
