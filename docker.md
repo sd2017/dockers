@@ -81,6 +81,7 @@
 |`docker exec `--user root -it clionx /bin/sh |Exec additional command in a running docker |
 |`docker history` image  |image rollback  https://gist.github.com/dasgoll/476ecc7a057ac885f0be |
 |`docker pull` maven:3.3.9-jdk-7| docker pull image:tag from repository docker hub|
+|docker run --name posterTry -e POSTGRES_PASSWORD=database -d postgres:9.6.0|run in detach mode|
 |`docker run -itd` --name=maven  maven:3.3.9-jdk-7  /bin/bash | starting pseudo terminal named container, with image and bash command |
 |`docker run -itd --link` server3 --name=client3 client_img /bin/bash |run with ****link****|
 | `docker ps` / `docker ps -a`| docker list running/stopped containers |
@@ -114,8 +115,10 @@ https://docs.docker.com/engine/reference/builder/  Dockerfile builder
 |git commit -am "initial from http://www.qtrac.eu/pipbook-1.0.tar.gz"|`TBD -a`|
 |git tag  0.1  -m "initial from http://www.qtrac.eu/pipbook-1.0.tar.gz"|tag number and messege|   
 |git push|moving upstream from local to remote repository|
+|git pull| updating local repository|
 |git pull --rebase `TBD`||
 |git fetch --all| get remote repository , http://stackoverflow.com/questions/1125968/how-to-force-git-pull-to-overwrite-local-files 
+|git vs svn| http://aliceinfo.cern.ch/Offline/node/2912/#UpdateCommands |
 |
 |---|---|
 
@@ -218,7 +221,7 @@ dpkg -S /usr/lib/debug/usr/lib/x86_64-linux-gnu/libwebkitgtk-3.0.so.0.22.15
 sudo apt-get remove   libwebkitgtk-3.0-0-dbg
 http://askubuntu.com/questions/712190/files-in-usr-lib-debug-usr-lib-taking-a-lot-of-space-how-to-free-it   diskspace
 
-##resising lvm partition to use all disk space 
+##resizing lvm partition to use all disk space 
 http://ryandoyle.net/posts/expanding-a-lvm-partition-to-fill-remaining-drive-space/
 `TODO`shoshan@lubuntu1:~/github/CuteMarkEd$ sudo pvresize /dev/sda5 
   Physical volume "/dev/sda5" changed
@@ -1384,6 +1387,50 @@ sudo apt-get install okular okular-extra-backends
 
 #database
 https://github.com/Apress/relational-db-programming
+##postgres 
+https://help.ubuntu.com/community/PostgreSQL
+
+##mysql
+pro docker p41
+###mysql cli
+|action|commad|
+|---|---|
+|starting mysql cli|$mysql|
+|setting database to use |mysql> use mysqldb|
+|creating table|mysql> CREATE TABLE Catalog(CatalogId INTEGER PRIMARY KEY,Journal VARCHAR(25),Publisher VARCHAR(25),Edition VARCHAR(25),Title VARCHAR(45),Author VARCHAR(25));|
+|insert data to table|INSERT INTO Catalog VALUES('1','Oracle Magazine','Oracle Publishing','November December 2013','Engineering as a Service','David A. Kelly');|
+|querying table for all the data|mysql> SELECT * FROM Catalog;|
+|list databases|mysql> show databases;|
+|list tables|mysql> show tables;|
+
+##hbase
+|action|command|
+|---|---|
+|starting habase shell|/usr/bin/hbase shell |
+|create table 'wlslog' with column family ‘log’|hbase(main):001:0> create 'wlslog' , 'log'|
+|list tables|list| 
+|get data in a row or a column cell|get 'wlslog', 'log7'|
+
+
+###get data in a row
+|$|hbase(main):045:0> get 'wlslog', 'log7'|
+|---|---|
+|COLUMN         |                                     CELL|                                                                                                                                                
+| log:category   |                                    timestamp=1477934529221, value=Notice|                                                                                                               
+| log:code        |                                   timestamp=1477934529300, value=BEA-000360|                                                                                                           
+| log:msg          |                                  timestamp=1477934529327, value=Server started in RUNNING mode|                                                                                       
+| log:servername       |                              timestamp=1477934529275, value=AdminServer|                                                                                                          
+| log:time_stamp        |                             timestamp=1477934529193, value=Apr-8-2014-7:06:22-PM-PDT|                                                                                            
+| log:type               |                            timestamp=1477934529248, value=WeblogicServer|          
+
+###get single row data as dictionary 
+
+|$|hbase(main):048:0> get  'wlslog', 'log5', {COLUMNS=>['log:msg']} |
+|---|---|
+|COLUMN|                                              CELL|                                                                                                                                                
+| log:msg|                                            timestamp=1477934529012, value=Started Weblogic AdminServer|  
+
+
 ##couchdb
 http://www.ibm.com/developerworks/library/os-couchdb/
 https://www.tutorialspoint.com/couchdb/couchdb_introduction.htm
