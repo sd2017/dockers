@@ -1410,7 +1410,7 @@ pro docker p41
 |create table 'wlslog' with column family ‘log’|hbase(main):001:0> create 'wlslog' , 'log'|
 |list tables|list| 
 |get data in a row or a column cell|get 'wlslog', 'log7'|
-
+|get data from a table |scan 'wlslog'|
 
 ###get data in a row
 |$|hbase(main):045:0> get 'wlslog', 'log7'|
